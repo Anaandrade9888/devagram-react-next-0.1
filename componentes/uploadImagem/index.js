@@ -1,19 +1,29 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from "react";
+
 
 export function UploadImagem({
 className = '',
-setImagem
+setImagem,
+imagemPreview,
+imagemPreviewClassName = '',
+aoSetarAReferencia
 }) {
     const referenciaInput = useRef(null);
+
+    useEffect(() => {
+        if(!aoSetarAReferencia){
+            return;
+        }
+
+        aoSetarAReferencia(referenciaInput?.current);
+    }, [referenciaInput?.current]);
     
     const abrirSeletorArquivos = () => {
         referenciaInput?.current?.click();
-    }
+      };
 
     const aoAlterarImagem = () => {
-        console.log('aoAlterarImagem');
-
-        if(referenciaInput?.current?.files?.length) {
+        if (!referenciaInput?.current?.files?.length) {
             return;
         }
 
@@ -21,13 +31,27 @@ setImagem
         const fileReader = new FileReader();
         fileReader.readAsDataURL(arquivo);
         fileReader.onloadend = () => {
-            console.log(fileReader.result);
+            setImagem({
+            preview: fileReader.result,
+            arquivo
+           });
         }
+
+       
     } 
 
     return (
      <div className={`uploadImagemContainer ${className}`} onClick={abrirSeletorArquivos}>
-       <button>abrir seletor de arquivos</button>
+        {imagemPreview && (
+         <div className="imagemPreviewContainer">
+             <img
+                src={imagemPreview}
+                alt='imagem preview'
+                className={imagemPreviewClassName}
+                />
+        </div>
+        )}
+        
         <input 
         type='file' 
         className='oculto' 
