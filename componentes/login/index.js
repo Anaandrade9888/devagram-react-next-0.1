@@ -1,5 +1,15 @@
 export default function Login() {
     return (
-        <h1>Login</h1>
+        <section className={'paginaLogin paginaPublica'}>
+            <div className="logoContainer">
+            </div>
+
+            <div className="conteudoPaginaPublica">
+                <form>
+                    <input type={'email'} placeholder="E-mail" />
+                </form>
+            </div>
+        </section>
+
     );
 }
