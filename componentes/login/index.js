@@ -18,12 +18,13 @@ export default function Login() {
                 src={imagemLogo}
                 alt="logotipo"
                 layout="fill"
+                className="logo"
                />
             </div>
 
             <div className="conteudoPaginaPublica">
                 <form>
-                 < InputPublico
+                 <InputPublico
                  imagem={imagemEnvelope}
                  texto="E-mail"
                  tipo="email"

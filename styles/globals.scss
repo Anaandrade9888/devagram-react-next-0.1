@@ -15,7 +15,7 @@ html, body, #__next {
 }
 
 .oculto {
-  display: none;
+  display: none !important;
 }
 
 input {
@@ -34,6 +34,7 @@ input {
       color: $cinza2;
     }
 }
+
 
 
 @import '../public/fonts/fonts.scss';
