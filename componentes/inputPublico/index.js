@@ -13,7 +13,7 @@ export default function inputPublico({
         <div className="inputPublicoContainer">
             <div className="inputPublico">
                 
-                <Image
+                <Image 
                 src={imagem}
                 alt="imagem do campo"
                 className="iconeInputPublico"

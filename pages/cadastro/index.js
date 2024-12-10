@@ -7,11 +7,21 @@ import InputPublico from "@/componentes/inputPublico";
 import imagemUsuarioAtivo from "../../public/imagens/usuarioAtivo.svg";
 import imagemEnvelope from "../../public/imagens/envelope.svg";
 import imagemChave from "../../public/imagens/chave.svg";
+import imagemUsuarioCinza from "../../public/imagens/usuarioCinza.svg";
+import  UploadImagem  from "@/componentes/uploadImagem";
+import { useState } from "react";
 
 
 
 
 export default function Cadastro() {
+    const [imagem, setImagem] = useState(null);
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [confimacaoSenha, setConfirmacaoSenha] = useState("");
+    
+    
     return (
         <section className={`paginaCadastro paginaPublica`}>
         <div className="logoContainer desktop">
@@ -25,11 +35,19 @@ export default function Cadastro() {
 
             <div className="conteudoPaginaPublica">
                 <form>
+
+              <UploadImagem
+                imagemPreviewClassName= "avatar avatarPreview"
+                imagemPreview={imagem?.preview ||imagemUsuarioCinza.src }
+                setImagem={setImagem}
+                /> 
+
                 <InputPublico
                  imagem={imagemUsuarioAtivo}
                  texto="Nome Completo"
                  tipo="text"
-                 aoAlterarValor={e => console.log(e.target.value)}
+                 aoAlterarValor={e => setNome(e.target.value)}
+                 valor={nome}
                  //valor={senha}
                 />
 
@@ -37,21 +55,24 @@ export default function Cadastro() {
                 imagem={imagemEnvelope}
                 texto="E-mail"
                 tipo="email"
-                aoAlterarValor={e => console.log(e.target.value)}
+                aoAlterarValor={e => setEmail(e.target.value)}
+                valor={email}
                 />
 
               <InputPublico
                 imagem={imagemChave}
                 texto="Senha"
                 tipo="password"
-                aoAlterarValor={e => console.log(e.target.value)}
+                aoAlterarValor={e => setSenha(e.target.value)}
+                valor={senha}
                 />
 
               <InputPublico
                 imagem={imagemChave}
                 texto="Confirmar Senha"
                 tipo="password"
-                aoAlterarValor={e => console.log(e.target.value)}
+                aoAlterarValor={e => setConfirmacaoSenha(e.target.value)}
+                valor={confimacaoSenha}
                 />
                 
                 <Botao
